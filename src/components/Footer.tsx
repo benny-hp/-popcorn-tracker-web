@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import MuiLink from "@mui/material/Link";
-import React from "react";
 
 const Footer = () => {
   return (
