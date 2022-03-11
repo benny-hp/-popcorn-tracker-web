@@ -19,7 +19,8 @@
     "axios": "^0.26.1",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-query": "^3.34.16"
   },
   "devDependencies": {
     "@types/node": "latest",
