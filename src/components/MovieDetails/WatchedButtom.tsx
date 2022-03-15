@@ -1,0 +1,22 @@
+import { Button, ButtonTypeMap, ExtendButtonBase } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import React from "react";
+
+type ButtonProps = {
+  watched: boolean;
+} & React.ComponentProps<ExtendButtonBase<ButtonTypeMap<{}, "button">>>;
+
+const WatchedButton = ({ watched, ...rest }: ButtonProps) => {
+  return (
+    <Button
+      sx={{ background: "transparent", color: "text.primary" }}
+      startIcon={watched ? <CheckBoxIcon color="error" /> : <CheckIcon />}
+      {...rest}
+    >
+      set watched
+    </Button>
+  );
+};
+
+export default WatchedButton;
