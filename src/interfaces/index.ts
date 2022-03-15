@@ -18,3 +18,6 @@ export interface Movie {
   vote_count: number;
   watched: boolean;
 }
+export interface UpdateMovie {
+  watched: boolean;
+}
