@@ -15,7 +15,7 @@ const MovieCard = ({ data }: Props) => {
   return (
     <Grid item xs={4} sm={3} md={2}>
       <div style={{ maxWidth: "150px" }}>
-        <Link href={`/${id}`}>
+        <Link href={`/movie/${id}`}>
           <MyImage src={poster_path} height={225} width={150} />
         </Link>
       </div>
@@ -24,7 +24,7 @@ const MovieCard = ({ data }: Props) => {
         variant="h6"
         fontSize={16}
         component={Link}
-        href={`/${id}`}
+        href={`/movie/${id}`}
         noLinkStyle
         color={"text.primary"}
         sx={[
