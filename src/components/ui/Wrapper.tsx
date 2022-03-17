@@ -13,6 +13,7 @@ const Wrapper = ({ children }: Props) => {
         },
         bgcolor: "primary.dark",
         paddingTop: 2,
+        paddingBottom: 2,
       }}
     >
       <Container maxWidth="lg" disableGutters={false}>

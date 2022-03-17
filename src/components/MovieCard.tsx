@@ -1,16 +1,17 @@
 import { Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import { styled } from "@mui/material/styles";
-import { Movie } from "../interfaces";
+import { Movie, MovieResult } from "../interfaces";
 import Link from "./Link";
 interface Props {
-  data: Movie;
+  data: Movie | MovieResult;
+  search?: boolean;
 }
 
 const MyImage = styled(Image)`
   border-radius: 7px;
 `;
-const MovieCard = ({ data }: Props) => {
+const MovieCard = ({ data, search }: Props) => {
   const { title, poster_path, release_date, id } = data;
   return (
     <Grid item xs={4} sm={3} md={2}>
