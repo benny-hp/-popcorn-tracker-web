@@ -21,3 +21,20 @@ export interface Movie {
 export interface UpdateMovie {
   watched: boolean;
 }
+
+export interface MovieResult {
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  release_date: string;
+  title: string;
+}
+
+export interface MoviesSearch {
+  page: number;
+  results: MovieResult[];
+  total_pages: number;
+  total_results: number;
+}

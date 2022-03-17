@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { Movie, UpdateMovie } from "../interfaces";
-import { getMovie, getMovies, updateMovie } from "../utils/api";
+import { Movie, MoviesSearch, UpdateMovie } from "../interfaces";
+import { getMovie, getMovies, searchMovies, updateMovie } from "../utils/api";
 
 const useMovies = () => {
   const getMoviesApi = () => {
@@ -20,10 +20,20 @@ const useMovies = () => {
       },
     });
   };
+  const searchMoviesApi = (query: string) => {
+    return useQuery<MoviesSearch, Error>(
+      ["search", query],
+      () => searchMovies(query),
+      {
+        enabled: !!query,
+      }
+    );
+  };
   return {
     getMoviesApi,
     getMovieById,
     updateMovieById,
+    searchMoviesApi,
   };
 };
 
