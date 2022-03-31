@@ -10,19 +10,30 @@ const MovieDetailsPage: NextPage = () => {
   const {
     query: { id },
   } = useRouter();
-  const { getMovieById, updateMovieById } = useMovies();
+  const { getMovieById, updateMovieById, deleteMovieById } = useMovies();
   const { data } = getMovieById(id as string);
   const { mutate: updateMovie } = updateMovieById(id as string);
+  const { mutate: deleteMovie } = deleteMovieById(id as string);
 
   const handleUpdate = (watched: UpdateMovie) => {
     updateMovie(watched);
+  };
+
+  const handleDelete = () => {
+    deleteMovie();
   };
 
   return (
     <>
       <Nav returnButton />
       <Wrapper>
-        {data && <MovieDetails data={data} handleUpdate={handleUpdate} />}
+        {data && (
+          <MovieDetails
+            data={data}
+            handleUpdate={handleUpdate}
+            handleDelete={handleDelete}
+          />
+        )}
       </Wrapper>
     </>
   );

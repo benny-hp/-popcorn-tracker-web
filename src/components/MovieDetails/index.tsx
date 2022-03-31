@@ -16,17 +16,24 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
 import WatchedButton from "./WatchedButtom";
 import WatchlistButton from "./WatchlistButton";
+import RemoveButton from "./RemoveButton";
 interface Props {
   data: Movie;
   handleUpdate?: (watched: UpdateMovie) => void;
   handleCreate?: (data: Movie) => void;
+  handleDelete?: () => void;
 }
 
 const MyImage = styled(Image)`
   border-radius: 7px;
 `;
 
-const MovieDetails = ({ data, handleUpdate, handleCreate }: Props) => {
+const MovieDetails = ({
+  data,
+  handleUpdate,
+  handleCreate,
+  handleDelete,
+}: Props) => {
   const {
     poster_path,
     title,
@@ -101,28 +108,39 @@ const MovieDetails = ({ data, handleUpdate, handleCreate }: Props) => {
           </Box>
           <Tagline tagline={tagline} />
           {size > 600 && (
-            <Box mt={2} sx={{ display: "flex", gap: 2 }}>
-              <WatchedButton
-                watched={watched}
-                onClick={() => {
-                  if (handleUpdate) {
-                    handleUpdate({ watched: true });
-                  } else if (handleCreate) {
-                    handleCreate({ ...data, watched: true });
-                  }
+            <>
+              <Box
+                mt={2}
+                sx={{
+                  display: "flex",
+
+                  flexWrap: "wrap",
+                  gap: 2,
                 }}
-              />
-              <WatchlistButton
-                watched={watched}
-                onClick={() => {
-                  if (handleUpdate) {
-                    handleUpdate({ watched: false });
-                  } else if (handleCreate) {
-                    handleCreate({ ...data, watched: false });
-                  }
-                }}
-              />
-            </Box>
+              >
+                <WatchedButton
+                  watched={watched}
+                  onClick={() => {
+                    if (handleUpdate) {
+                      handleUpdate({ watched: true });
+                    } else if (handleCreate) {
+                      handleCreate({ ...data, watched: true });
+                    }
+                  }}
+                />
+                <WatchlistButton
+                  watched={watched}
+                  onClick={() => {
+                    if (handleUpdate) {
+                      handleUpdate({ watched: false });
+                    } else if (handleCreate) {
+                      handleCreate({ ...data, watched: false });
+                    }
+                  }}
+                />
+                {handleDelete && <RemoveButton onClick={handleDelete} />}
+              </Box>
+            </>
           )}
           {size > 900 && (
             <>
@@ -164,6 +182,7 @@ const MovieDetails = ({ data, handleUpdate, handleCreate }: Props) => {
                   }
                 }}
               />
+              {handleDelete && <RemoveButton onClick={handleDelete} />}
             </Box>
           )}
 

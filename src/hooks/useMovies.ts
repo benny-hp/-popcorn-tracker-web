@@ -9,6 +9,7 @@ import {
 } from "../interfaces";
 import {
   createMovie,
+  deleteMovie,
   getMovie,
   getMovies,
   getSearchMovie,
@@ -40,6 +41,18 @@ const useMovies = () => {
       },
     });
   };
+
+  const deleteMovieById = (id: string) => {
+    const { push } = useRouter();
+    const queryClient = useQueryClient();
+    return useMutation(() => deleteMovie(id), {
+      onSuccess: () => {
+        queryClient.invalidateQueries("movies");
+        push("/");
+      },
+    });
+  };
+
   const searchMoviesApi = (query: string) => {
     return useQuery<MoviesSearch, Error>(
       ["search", query],
@@ -77,6 +90,7 @@ const useMovies = () => {
     searchMoviesApi,
     getSearchMovieById,
     createMovieApi,
+    deleteMovieById,
   };
 };
 

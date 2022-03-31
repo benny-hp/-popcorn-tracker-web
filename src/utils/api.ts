@@ -39,6 +39,10 @@ export function createMovie(data: Movie): Promise<Movie> {
     });
 }
 
+export function deleteMovie(id: string) {
+  return api.delete<void>(`/movies/${id}`);
+}
+
 export function searchMovies(query: string): Promise<MoviesSearch> {
   return api
     .get<MoviesSearch>("/movies/search", {
