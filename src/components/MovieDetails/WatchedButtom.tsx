@@ -4,17 +4,18 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import React from "react";
 
 type ButtonProps = {
-  watched: boolean;
+  watched: boolean | null;
+  home?: boolean;
 } & React.ComponentProps<ExtendButtonBase<ButtonTypeMap<{}, "button">>>;
 
-const WatchedButton = ({ watched, ...rest }: ButtonProps) => {
+const WatchedButton = ({ watched, home, ...rest }: ButtonProps) => {
   return (
     <Button
       sx={{ background: "transparent", color: "text.primary" }}
       startIcon={watched ? <CheckBoxIcon color="error" /> : <CheckIcon />}
       {...rest}
     >
-      set watched
+      {home ? "watched" : "set watched"}
     </Button>
   );
 };

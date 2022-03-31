@@ -4,19 +4,29 @@ import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
 type ButtonProps = {
-  watched: boolean;
+  watched: boolean | null;
+  home?: boolean;
 } & React.ComponentProps<ExtendButtonBase<ButtonTypeMap<{}, "button">>>;
 
-const WatchlistButton = ({ watched, ...rest }: ButtonProps) => {
+const WatchlistButton = ({ watched, home, ...rest }: ButtonProps) => {
   return (
     <Button
-      sx={{ background: "transparent", color: "text.primary" }}
+      sx={{
+        background: "transparent",
+        color: "text.primary",
+      }}
       startIcon={
-        watched ? <PlaylistAddIcon /> : <PlaylistAddCheckIcon color="error" />
+        watched === null ? (
+          <PlaylistAddIcon />
+        ) : watched ? (
+          <PlaylistAddIcon />
+        ) : (
+          <PlaylistAddCheckIcon color="error" />
+        )
       }
       {...rest}
     >
-      add to watchlist
+      {home ? "watchlist" : "add to watchlist"}
     </Button>
   );
 };
