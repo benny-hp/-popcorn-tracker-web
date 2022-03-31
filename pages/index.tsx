@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Nav from "../src/components/Nav";
 import useMovies from "../src/hooks/useMovies";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { Wrapper } from "../src/components/ui";
 import MovieCard from "../src/components/MovieCard";
 import WatchedButton from "../src/components/MovieDetails/WatchedButtom";
@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   const toggle = useContext(ToggleContext);
   const setToggle = useContext(SetToggleContext);
   const { getMoviesApi } = useMovies();
-  const { data, isError, error } = getMoviesApi(toggle);
+  const { data, isError, error, isLoading } = getMoviesApi(toggle);
 
   return (
     <>
@@ -32,6 +32,18 @@ const Home: NextPage = () => {
         />
 
         <WatchedButton watched={toggle} home onClick={() => setToggle(true)} />
+
+        {isLoading && (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <CircularProgress color="secondary" />
+          </Box>
+        )}
         <Grid container columnSpacing={2} rowGap={2} mt={1}>
           {data?.map((movie) => (
             <MovieCard data={movie} key={movie.id} />
