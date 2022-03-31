@@ -12,8 +12,17 @@ const Footer = () => {
         {"Copyright © "}
         {new Date().getFullYear()}
         {" by "}
-        <MuiLink color="inherit" href="https://mui.com/">
+        <MuiLink color="inherit" href="https://bennyhernandez.com/">
           Benny Hernandez
+        </MuiLink>
+      </Typography>
+      <Typography variant="body2" color="text.primary" align="center">
+        Powered by{" "}
+        <MuiLink
+          color="inherit"
+          href="https://www.themoviedb.org/?language=en-US"
+        >
+          TMDB
         </MuiLink>
       </Typography>
     </Box>

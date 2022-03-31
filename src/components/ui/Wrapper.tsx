@@ -8,8 +8,8 @@ const Wrapper = ({ children }: Props) => {
     <Box
       sx={{
         minHeight: {
-          xs: "calc(100vh - 108.02px)",
-          sm: "calc(100vh - 116.02px)",
+          xs: "calc(100vh - 128.02px)",
+          sm: "calc(100vh - 136.02px)",
         },
         bgcolor: "primary.dark",
         paddingTop: 2,
