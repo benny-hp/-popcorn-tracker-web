@@ -91,7 +91,7 @@ const Home: NextPage = () => {
         </Typography>
         <Grid container columnSpacing={2} rowGap={2}>
           {data?.results?.map((movie) => (
-            <MovieCard data={movie} key={movie.id} />
+            <MovieCard data={movie} key={movie.id} search />
           ))}
         </Grid>
       </Wrapper>
