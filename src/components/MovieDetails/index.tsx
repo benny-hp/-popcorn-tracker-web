@@ -10,6 +10,7 @@ import Trailer from "./Trailer";
 import Tagline from "./Tagline";
 import Overview from "./Overview";
 import StatusAndVote from "./StatusAndVote";
+import { styled } from "@mui/material/styles";
 import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
@@ -17,10 +18,15 @@ import WatchedButton from "./WatchedButtom";
 import WatchlistButton from "./WatchlistButton";
 interface Props {
   data: Movie;
-  handleUpdate: (watched: UpdateMovie) => void;
+  handleUpdate?: (watched: UpdateMovie) => void;
+  handleCreate?: (data: Movie) => void;
 }
 
-const MovieDetails = ({ data, handleUpdate }: Props) => {
+const MyImage = styled(Image)`
+  border-radius: 7px;
+`;
+
+const MovieDetails = ({ data, handleUpdate, handleCreate }: Props) => {
   const {
     poster_path,
     title,
@@ -39,6 +45,7 @@ const MovieDetails = ({ data, handleUpdate }: Props) => {
     watched,
   } = data;
   let size = useWindowSize();
+
   return (
     <>
       <Box
@@ -50,9 +57,26 @@ const MovieDetails = ({ data, handleUpdate }: Props) => {
           },
         }}
       >
-        <Image src={poster_path} height={450} width={300} />
+        <Box
+          sx={{
+            margin: {
+              md: 2,
+            },
+          }}
+        >
+          <MyImage src={poster_path} height={450} width={300} />
+        </Box>
 
-        <Box sx={{ paddingLeft: 2 }}>
+        <Box
+          sx={{
+            paddingLeft: {
+              xs: 2,
+            },
+            padding: {
+              md: 2,
+            },
+          }}
+        >
           <Title title={title} release_date={release_date} />
           <Box
             sx={{
@@ -80,11 +104,23 @@ const MovieDetails = ({ data, handleUpdate }: Props) => {
             <Box mt={2} sx={{ display: "flex", gap: 2 }}>
               <WatchedButton
                 watched={watched}
-                onClick={() => handleUpdate({ watched: true })}
+                onClick={() => {
+                  if (handleUpdate) {
+                    handleUpdate({ watched: true });
+                  } else if (handleCreate) {
+                    handleCreate({ ...data, watched: true });
+                  }
+                }}
               />
               <WatchlistButton
                 watched={watched}
-                onClick={() => handleUpdate({ watched: false })}
+                onClick={() => {
+                  if (handleUpdate) {
+                    handleUpdate({ watched: false });
+                  } else if (handleCreate) {
+                    handleCreate({ ...data, watched: false });
+                  }
+                }}
               />
             </Box>
           )}
@@ -110,11 +146,23 @@ const MovieDetails = ({ data, handleUpdate }: Props) => {
             >
               <WatchedButton
                 watched={watched}
-                onClick={() => handleUpdate({ watched: true })}
+                onClick={() => {
+                  if (handleUpdate) {
+                    handleUpdate({ watched: true });
+                  } else if (handleCreate) {
+                    handleCreate({ ...data, watched: true });
+                  }
+                }}
               />
               <WatchlistButton
                 watched={watched}
-                onClick={() => handleUpdate({ watched: false })}
+                onClick={() => {
+                  if (handleUpdate) {
+                    handleUpdate({ watched: false });
+                  } else if (handleCreate) {
+                    handleCreate({ ...data, watched: false });
+                  }
+                }}
               />
             </Box>
           )}
