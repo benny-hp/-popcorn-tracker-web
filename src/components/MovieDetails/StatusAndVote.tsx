@@ -22,7 +22,7 @@ const StatusAndVote = ({
       }}
     >
       <Box>
-        <Link
+        <Typography
           sx={{
             textDecoration: "none",
             color: "text.primary",
@@ -31,11 +31,12 @@ const StatusAndVote = ({
               color: "orange",
             },
           }}
+          component="a"
           href={homepage}
           target="_blank"
         >
           {status}
-        </Link>
+        </Typography>
         <Typography color="text.secondary">Status</Typography>
       </Box>
 

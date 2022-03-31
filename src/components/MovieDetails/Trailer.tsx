@@ -1,12 +1,13 @@
 import React from "react";
 import Link from "../Link";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { Typography } from "@mui/material";
 interface Props {
   video: string;
 }
 const Trailer = ({ video }: Props) => {
   return (
-    <Link
+    <Typography
       sx={{
         display: "inline-flex",
         alignItems: "center",
@@ -16,12 +17,13 @@ const Trailer = ({ video }: Props) => {
           color: "orange",
         },
       }}
+      component="a"
       href={video}
       target="_blank"
     >
       <PlayArrowIcon />
       Trailer
-    </Link>
+    </Typography>
   );
 };
 
