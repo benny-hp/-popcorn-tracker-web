@@ -1,10 +1,30 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { Movie, MoviesSearch, UpdateMovie } from "../interfaces";
-import { getMovie, getMovies, searchMovies, updateMovie } from "../utils/api";
+import { useRouter } from "next/router";
+import {
+  Movie,
+  MovieResult,
+  MovieSearch,
+  MoviesSearch,
+  UpdateMovie,
+} from "../interfaces";
+import {
+  createMovie,
+  getMovie,
+  getMovies,
+  getSearchMovie,
+  searchMovies,
+  updateMovie,
+} from "../utils/api";
 
 const useMovies = () => {
-  const getMoviesApi = () => {
-    return useQuery<Movie[], Error>("movies", getMovies);
+  const getMoviesApi = (watched: boolean) => {
+    return useQuery<Movie[], Error>(
+      ["movies", watched],
+      () => getMovies(watched),
+      {
+        enabled: true,
+      }
+    );
   };
 
   const getMovieById = (id: string) => {
@@ -29,11 +49,34 @@ const useMovies = () => {
       }
     );
   };
+
+  const getSearchMovieById = (id: string) => {
+    return useQuery<MovieSearch, Error>(["moviesSearch", id], () =>
+      getSearchMovie(id)
+    );
+  };
+
+  const createMovieApi = (data: Movie) => {
+    const queryClient = useQueryClient();
+    const { push } = useRouter();
+    return useMutation<Movie, Error, Movie>(
+      (data: Movie) => createMovie(data),
+      {
+        onSuccess: (data) => {
+          queryClient.invalidateQueries("movies");
+          push("/");
+        },
+      }
+    );
+  };
+
   return {
     getMoviesApi,
     getMovieById,
     updateMovieById,
     searchMoviesApi,
+    getSearchMovieById,
+    createMovieApi,
   };
 };
 

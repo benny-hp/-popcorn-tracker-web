@@ -16,7 +16,7 @@ export interface Movie {
   video: string;
   vote_average: number;
   vote_count: number;
-  watched: boolean;
+  watched: boolean | null;
 }
 export interface UpdateMovie {
   watched: boolean;
@@ -37,4 +37,13 @@ export interface MoviesSearch {
   results: MovieResult[];
   total_pages: number;
   total_results: number;
+}
+export interface SearchGenre {
+  id: number;
+  name: string;
+}
+
+export interface MovieSearch extends Omit<Movie, "genres" | "watched"> {
+  genres: SearchGenre[];
+  watched?: boolean | null;
 }
