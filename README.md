@@ -1,5 +1,7 @@
 # Popcorn Tracker
 
+![sticky notes app](./public/popcorn-tracker-web.vercel.app.png)
+
 #### Top Technologies
 
 [![React Badge](https://img.shields.io/badge/-React-61DBFB?style=for-the-badge&labelColor=black&logo=react&logoColor=61DBFB)](#) [![Typescript Badge](https://img.shields.io/badge/-Typescript-007acc?style=for-the-badge&labelColor=black&logo=typescript&logoColor=007acc)](#) [![Next Badge](https://img.shields.io/badge/-NextJS-141414?style=for-the-badge&labelColor=black&logo=nextdotjs&logoColor=white)](#) [![Nodejs Badge](https://img.shields.io/badge/-Nodejs-3C873A?style=for-the-badge&labelColor=black&logo=node.js&logoColor=3C873A)](#) [![Nest Badge](https://img.shields.io/badge/-Nest-E0234E?style=for-the-badge&labelColor=black&logo=nestjs&logoColor=E0234E)](#) [![Postgres Badge](https://img.shields.io/badge/-PostgreSQL-4169E1?style=for-the-badge&labelColor=black&logo=postgresql&logoColor=4169E1)](#)
