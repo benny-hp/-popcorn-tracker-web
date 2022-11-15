@@ -4,11 +4,7 @@ interface Props {
   tagline: string;
 }
 const Tagline = ({ tagline }: Props) => {
-  return (
-    <Typography mt={2} color="ActiveCaption">
-      {tagline}
-    </Typography>
-  );
+  return <Typography mt={2}>{tagline}</Typography>;
 };
 
 export default Tagline;
